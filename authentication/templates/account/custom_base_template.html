@@ -1,0 +1,36 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Futuristic Gadgets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'storefront/style2.css' %}">
+ <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+    <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TECHNOVA</div>
+    <div>
+      
+      <button class="btn-neon">Sign Up</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="d-flex justify-content-center align-items-center">
+    {% block body%}
+
+        {% endblock body%}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2023 TECHNOVA | <span class="neon-pink">Powered by Innovation</span></p>
+  </footer>
+  <script src="{% static 'user\index.js' %}"></script>
+</body>
+</html>

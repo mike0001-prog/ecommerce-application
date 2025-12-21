@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Futuristic Gadgets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'storefront/style2.css' %}">
+</head>
+<body>
+    <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TECHNOVA</div>
+    <div class="nav-links">
+      <a href="#">Phones</a>
+      <a href="#">Gadgets</a>
+      <a href="#">Deals</a>
+      <button class="btn-neon">Login</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>UPGRADE YOUR TECH</h1>
+      <p>Explore cutting-edge phones and gadgets with <span class="neon-cyan">cyberpunk aesthetics</span>.</p>
+      <button class="btn-neon-pink">SHOP NOW</button>
+    </div>
+    <div class="hero-image">
+      <img src="https://via.placeholder.com/500x300/1A1A1A/00FFEE?text=SMARTPHONE" alt="Featured Product">
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="products">
+    <h2><span class="neon-cyan">//</span> LATEST DROPS</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-badge">NEW</div>
+        <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Phone">
+        <h3>Quantum X Phone</h3>
+        <p class="price">$999 <span class="original-price">$1,299</span></p>
+        <button class="btn-neon">ADD TO CART</button>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">SALE</div>
+        <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Gadget">
+        <h3>Neon Wireless Earbuds</h3>
+        <p class="price">$199 <span class="original-price">$249</span></p>
+        <button class="btn-neon">ADD TO CART</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Gadget">
+        <h3>Holographic Keyboard</h3>
+        <p class="price">$349</p>
+        <button class="btn-neon">ADD TO CART</button>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">HOT</div>
+        <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Phone">
+        <h3>Cyber Watch Pro</h3>
+        <p class="price">$599</p>
+        <button class="btn-neon">ADD TO CART</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2023 TECHNOVA | <span class="neon-pink">Powered by Innovation</span></p>
+  </footer>
+</body>
+</html>

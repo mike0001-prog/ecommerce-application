@@ -1,0 +1,20 @@
+{% extends "storefront\index.html" %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span class="neon-pink">Error Page</span>
+{% endblock breadcrumbs %}
+{% block body %}
+<div class="d-flex align-items-center justify-content-center">
+<div>
+  <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--pink)" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+
+<div class="d-block text-align-center neon-pink">{{ info }}</div>
+<div class="text-capitalize neon-pink text-align-center">Something went wrong</div>
+</div>
+
+</div>
+{% endblock %}

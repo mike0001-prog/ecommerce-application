@@ -1,0 +1,65 @@
+{% extends "storefront/settings_base.html" %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Shipping Info</span>
+{% endblock breadcrumbs %}
+{% block content %} 
+    <!-- <div style="display: flex; flex-direction: column; gap: 20px;">
+        {{ user.last_name}}
+        <div>
+          <a href="{% url 'storefront_home' %}">
+            <button class="btn btn-danger">back</button>
+          </a>
+        </div>
+        <div>
+            <h6>Profile Picture</h6>
+            <img style="border-radius: 50%; width: 150px;" src="{{ profile.user_image.url }}" alt="photo"></div>
+        
+      <div>
+        <h6>Address</h6>
+          {{ profile.user_address}}
+          <div><span class="text-info"> Note: </span> your address will be your default delivery address</div>
+        </div>
+        <div>
+            <a href="{% url 'user_profile' %}"> 
+              <button class="btn btn-success">update profile</button>
+            </a>
+        </div>
+    </div> -->
+      <div class="sub_checkoutb col-lg-9">
+      <form action="{% url 'storefront_checkout' %}" method="post">
+      <h1>Shipping Information</h1>
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-12"><h6>Recipient Information</h6></div>
+          <div class="col-6 form-group">
+            <label for="id_recipient_name">Name</label>
+            {{ form.recipient_name }}
+          </div>
+          <div class="col-6 form-group">
+            <label for="id_recipient_phone">Phone</label>
+            {{ form.recipient_phone }}
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 form-group">
+            <label for="id_lg_area">Local Government Area</label>
+            {{ form.lg_area }}
+          </div>
+        </div>
+         <div class="row">
+          <div class="col-12 form-group">
+            <label for="id_recipient_address">Address</label>
+            {{ form.recipient_address }}
+          </div>
+        </div>
+        <button class="btn-neon">Save Shipping Info</button>
+    </form> 
+  </div>
+
+
+ {% endblock content %}

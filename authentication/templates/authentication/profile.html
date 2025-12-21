@@ -1,0 +1,73 @@
+{% extends "storefront\settings_base.html" %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Profile</span>
+{% endblock breadcrumbs %}
+{% block content %}
+  <div class="col-lg-9">
+    <div class="row" >
+   <div class="col-lg-6 col-md-12" style="border-right: 2px solid ;">
+             <div class=" d-flex justify-content-center align-items-center" >
+      <div>
+          <img width="120px" height="120px" src="{{  request.user.customerprofile.user_image.url }}" alt="image" style="border: 2px solid cyan; border-radius: 50%;">
+        <div class="text-center">{{ request.user.username}}</div>
+      </div>
+      </div>
+      <div class="row">
+         <div class="col-12">
+      <h5>
+        Last Name
+      </h5>
+      <div >{{ request.user.last_name }}</div>
+    </div>
+      </div>
+  <div class="row">
+   
+      <div class="col-12">
+      <h5>
+        First Name
+      </h5>
+      <div>{{ request.user.first_name }}</div>
+    </div>
+  </div>
+    <!-- <div class="col-12">
+        <button class="btn-neon"> 
+          Edit
+<svg width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" class="size-6">
+
+  <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
+
+</svg>
+
+
+        </button>
+
+  </div> -->
+   </div>
+   <div class="col-lg-6 col-md-12" style="border-left: 2px solid ;">
+    <div>
+      <h2>Additional Information</h2>
+
+      <h5>Address</h5>
+      {{ request.user.customerprofile.user_address }}
+      <div class="col-12">
+        <a style="text-decoration: none;" href="{% url 'user_update' %}">
+                <button class="btn-neon"> 
+          Edit
+<svg width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" class="size-6">
+
+  <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
+
+</svg>
+        </button>
+</a>
+      </div>
+    </div>
+   </div>
+    </div>
+ 
+  </div>
+{% endblock content %}

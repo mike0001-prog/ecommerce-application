@@ -1,0 +1,39 @@
+{% extends 'storefront\settings_base.html' %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Orders</span>
+{% endblock breadcrumbs %}
+{% block content %}
+<div class="col-md-6 col-lg-9" style="height: 500px;">
+             <div class="custom-card-order">
+    <div class="custom-card-head">Orders</div>
+    <div class="controls d-flex">
+      <div class="custom-card-subhead underline">DELIVERED/ONGOING ({{ orders|length }})</div>
+      <div class="custom-card-subhead">CANCELLED/RETURNED</div>
+    </div>
+    <div class="orders p-2">
+      {% if condition %}
+         {% for order in orders %}
+         <div class="order">
+            {% if order.shipped %}
+            <div style="float: right;">Delivered</div>
+            {% else %}
+            <div style="float: right;" class="neon-pink">Pending</div>
+            {% endif %}
+            <span>#{{order.id}}</span>
+            <div>Date Ordered {{ order.date_ordered }}</div>
+            <div>Amount {{ order.amount_paid }}</div>
+            <div>Mode of Payment : payment on delivery </div>
+            <button>Show more</button>
+         </div>
+         {% endfor %}
+      {% else %}
+
+      {% endif %}
+     
+    </div>
+ </div>
+        </div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends "storefront/settings_base.html" %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Personal Information</span>
+{% endblock breadcrumbs %}
+{% block content %} 
+    <!-- <div style="display: flex; flex-direction: column; gap: 20px;">
+        {{ user.last_name}}
+        <div>
+          <a href="{% url 'storefront_home' %}">
+            <button class="btn btn-danger">back</button>
+          </a>
+        </div>
+        <div>
+            <h6>Profile Picture</h6>
+            <img style="border-radius: 50%; width: 150px;" src="{{ profile.user_image.url }}" alt="photo"></div>
+        
+      <div>
+        <h6>Address</h6>
+          {{ profile.user_address}}
+          <div><span class="text-info"> Note: </span> your address will be your default delivery address</div>
+        </div>
+        <div>
+            <a href="{% url 'user_profile' %}"> 
+              <button class="btn btn-success">update profile</button>
+            </a>
+        </div>
+    </div> -->
+      <!-- <div class="sub_checkoutb col-lg-9">
+      
+  </div> -->
+<div class="col-lg-9 sub_checkoutb">
+<form action="." method="post" class="mb-3">
+
+{% csrf_token %}
+  <div class="row">
+    <div class="col-6">
+      <label for="id_last_name">Last Name</label>
+      {{form.last_name}}
+    </div>
+    <div class="col-6">
+       <label for="id_first_name">First Name</label>
+      {{form.first_name}}
+    </div>
+  </div>
+  <div class="row">
+     <div class="col-12">
+       <label for="id_username">User Name</label>
+      {{form.username}}
+    </div>
+  </div>
+
+    <button class="btn-neon"> Update</button>
+</form>
+
+<h1>Additional Information</h1>
+<form action="{% url 'user_basic'%}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ profileform }}
+  <button class="btn-neon"> Update</button>
+</form>
+</div>
+ {% endblock content %}

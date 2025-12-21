@@ -1,0 +1,51 @@
+{% extends 'storefront\index.html' %}
+
+{% block body %}
+   <div class="container container-md container-sm">
+<div class="row">
+<div class="col-lg-3 col-md-4" style="background: var(--discover); padding: 20px; border-radius: 5px; ">
+ <div class="custom-card-order">
+     <div class="custom-card-head">My Account</div>
+    
+       <div class="accordion" id="accordionExample">
+    <!-- Item 1 -->
+    <div class="accordion-item" style="border: none;background: transparent; border-radius: 0;">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button"  type="button" data-bs-toggle="collapse" 
+                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" 
+                style="color: cyan; background: transparent; outline: none; border: none;">
+          Orders
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" 
+           aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body" style="color: var(--cyan);">
+          CANCELLLED/ RETURNED ORDERS 
+        </div>
+      </div>
+	 <div id="collapseOne" class="accordion-collapse collapse" 
+           aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body" style="color: var(--cyan);">
+          PENDING/ONGOING ORDERS 
+        </div>
+      </div>
+    </div>
+  
+       <!-- <a style="text-decoration: none; color: cyan;" href="{% url 'storefront_orders' %}">My Orders</a>  -->
+      </div>
+    <div class="custom-card-list">Recently Viewed</div>
+    <div class="custom-card-list"> <a style="text-decoration: none; color: cyan;" href="{% url 'storefront_wishlist' %}">Nova List</a> </div>
+   <div class="custom-card-list"> <a style="text-decoration: none; color: cyan;" href="{% url 'user_shipping' %}">My Shipping Info</a> </div>
+   <div class="custom-card-list"> <a style="text-decoration: none; color: cyan;" href="{% url 'user_profile' %}">My Profile</a> </div>
+   <div class="custom-card-list"> <a style="text-decoration: none; color: cyan;" href="{% url 'account_change_password' %}">Change Password</a> </div>
+   
+       
+   </div> 
+   </div>
+
+    {% block content %}
+       
+        {% endblock content %}
+</div> 
+   </div>
+{% endblock body %}

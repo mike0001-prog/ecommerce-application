@@ -1,0 +1,28 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '\css\bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '\user\style.css' %}">
+    <title>{{ title }}</title>
+</head>
+<body class="d-flex justify-content-center align-items-center h-100 bg-primary" id="body" >
+    <div class="lay container-md" >
+        <h2>sign up</h2>
+        {% for m in messages %}
+        <div class="alert alert-{{ m.level_tag }}">{{ m }}</div>
+        {% endfor %}
+        <form  action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="button">
+                <button class="btn btn-lg btn-success">sign up</button>
+            </div>
+        </form>
+    </div>
+    <script src="{% static '\css\bootstrap.js' %}"></script>
+</body>
+</html>

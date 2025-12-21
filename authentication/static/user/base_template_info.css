@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#body{
+    display: grid;
+     grid-template-rows: 70px auto 70px; 
+     height: 100dvh; 
+}
+#back-image{
+    display: none;
+    transition-property: display;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+#btn_logout{
+    display: flex; 
+    align-items: center; 
+    gap: 7px;
+}
+#btn
+/* 
+h2{
+    text-transform: capitalize;
+}
+.lay{
+    padding: 20px;
+}
+form div label{
+    display: block;
+    text-transform: capitalize;C:\Users\user\Desktop\project\Store\authentication\static\css\bootstrap.js
+    font-weight: bold;
+}
+form div .helptext{
+    display: none;
+}
+form div{
+    width: 300px;
+    padding: 5px;
+}
+form div input{
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+}
+form div input:first{
+    border-top-left-radius:5px ;
+    border-top-right-radius:5px ;
+}
+.button{
+    display: flex;
+    justify-content: center;
+}
+.button button{
+    padding: 0px 15px 0px 15px;
+    text-transform: capitalize;
+}
+.msg{
+    width: 100%;
+    background-color: rgb(147, 218, 147);
+    text-transform: capitalize;
+    padding: 15px 5px 15px 5px;
+    border-radius: 20px;
+}
+.errorlist li{
+    list-style: none;
+    background-color: rgb(231, 115, 115);
+} */
+/* body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+} */
+/* }
+.signin_form{
+    display: grid;
+    grid-template-columns: 300px;
+    grid-template-rows: 50px 50px;
+    gap: 10px;
+} */
+
+/* .signin_form input{
+    outline: none;
+    
+}
+#signin_lay,.lay{
+    box-shadow: 0px 0px 5px solid black;
+    border-radius: 5px;
+    background-color:white;
+    padding: 20px;
+} */
+#logo{
+    color:gold; 
+    text-shadow: 0px 0px 10px white;
+}
+#header{
+    padding: 5px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+.display{
+    display: block;
+}
+
+

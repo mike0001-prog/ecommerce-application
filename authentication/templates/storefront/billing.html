@@ -1,0 +1,43 @@
+{% extends 'storefront\index.html'%}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Billing</span>
+{% endblock breadcrumbs %}
+{% block body %}
+<div class="billing-main"  style="display: flex; justify-content: space-around; ">
+<div>
+     <div class="checkout-summary">
+        <h3 class="checkout-title">Shopping Summary</h3>
+ {% for product in products %}
+    <div class="checkout-product">
+        <strong>{{ product.name }}</strong>
+         {% for key,value in quantities.items %}
+      {% if key == product.id|slugify  %}    
+        <small style="color: var(--pink);">{{ value }} X <span>${{product.price}}</span></small>
+      {% endif %}
+        {% endfor %}
+    </div> 
+{% endfor %}
+<div style="padding: 10px; color: cyan;"><strong >TOTAL</strong> : <span>${{ total }}</span></div>
+<a href="{% url 'cart_summary' %}"><button class="btn-neon">Update Item(s)</button></a> 
+</div>
+</div>
+  <div>
+        <h1>Select Payment Method</h1>
+        <form action="{% url 'storefront_billing' %}" method="post">
+            {% csrf_token %}
+            <select style="padding: 10px; color: white; background:transparent; border: 2px solid cyan; outline: none;" name="mode" >
+                <option style="padding: 10px; color: white; background:black;" value="COD">Cash on Delivery</option>
+                <option  style="padding: 10px; color: white; background:black;" value="epayment">E-payment</option>
+            </select>
+
+      
+            <button class="btn-neon">Continue with Payment</button>
+        </form>
+        <!-- <button class="w-100"> Paystack  </button> -->
+    </div>
+</div>
+    </div>
+{% endblock %}

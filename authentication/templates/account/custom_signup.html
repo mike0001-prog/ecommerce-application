@@ -1,0 +1,20 @@
+{% extends "account\custom_base_template.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Sign Up {% endblock title%}
+{% block body %} 
+<div class="card"  style="padding: 5px;" >
+    <h1>Sign Up</h1>
+    {% for msg in messages %}
+<div >{{ msg }}</div>
+{%  endfor %}
+<form action="" method="post" >
+{% csrf_token %}
+{{ form|crispy }}
+    <div style="display: flex; justify-content: center; background-color: var(--discover);">
+                 <button class="btn-neon" style="width: 100%;">
+                     Sign Up
+            </button>
+            </div>
+</form>
+</div>
+{% endblock body %}

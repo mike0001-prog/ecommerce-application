@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '\user\style.css' %}">
+    <link rel="stylesheet" href="{% static '\css\bootstrap.css' %}">
+    
+    <title>{{ title }}</title>
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-primary">
+    <div id="signin_lay" class="container-lg">
+     
+        <h2 class="text-capitalize">sign in </h2>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.level_tag }}" role="alert">{{ message }}</div>
+        {% endfor %}
+        <form action="" method="post" class="signin_form">
+            {% csrf_token %}
+        
+            <div class="form.floating mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" class="form-control" name="email" type="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form.floating mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" class="form-control" name="password" type="password" placeholder="Enter password" required>
+            </div>
+           
+            <div>
+                <button class="btn btn-sm btn-success">sign in</button>
+            </div>
+        </form>
+        <p><a href="{% url 'user_signup' %}">click </a>to register an account</p>
+    </div>
+</body>
+</html>

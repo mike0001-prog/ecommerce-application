@@ -1,0 +1,27 @@
+{% extends 'storefront\settings_base.html' %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Nova List</span>
+{% endblock breadcrumbs %}
+{% block content %}
+      <div class="col-md-6 col-lg-9" style="height: 500px;">
+             <div class="custom-card-order">
+    <div class="custom-card-head">Nova List</div>
+    <div class="controls d-flex">
+      <div class="custom-card-subhead underline">Nova Item(s) {{ wishlistitems|length }}</div>
+     
+    </div>
+    <div class="orders p-2">
+         {% for w in wishlistitems %}
+         <div class="order">
+            <div>{{ w.product.name }}</div>
+            <div>{{ w.product.price }}</div>
+            <div>{{ w.product.description }}</div>
+         </div>
+         {% endfor %}
+    </div>
+ </div>
+        </div>
+{% endblock content %}

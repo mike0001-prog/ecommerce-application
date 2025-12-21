@@ -1,0 +1,218 @@
+{% extends 'storefront\index.html' %}
+  
+  {% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a><span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Cart</span>
+{% endblock breadcrumbs %}
+ 
+{% block body %}
+  <!-- Cart Container -->
+  <div class="cart-container">
+    <div class="cart-header">
+      <h1 class="cart-title"><span class="neon-cyan">YOUR</span> CART</h1>
+    </div>
+  <!-- <div class="shopping_carth">
+   <div id="notification-parent" style="width: 100%; padding: 5px; display:flex; gap: 5px;">
+    <a href="{% url 'storefront_home' %}">
+    <button class="btn-neon" style="text-transform: capitalize;">continue shopping</button> 
+   </a>
+
+  </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div>
+              <h1>Your Shopping Cart</h1>
+              <h2 class="anime">Shop in Style </h2>
+      </div>
+    </div> -->
+  
+    
+{% if cart|length > 0 %}
+  {% for product in products %}
+
+
+    <div class="cart-items">
+      <!-- Item 1 -->
+      <div class="cart-item row">
+        <div class="col-lg-3 col-md-12">
+        <img src="https://via.placeholder.com/100x100/1A1A1A/00FFEE?text=QX" class=" " alt="Quantum X Phone">
+        </div>
+        <div class="item-details col-lg-3 col-md-12">
+          <h3 class="item-name">{{ product.name }}</h3>
+          <p class="item-price">${{ product.price }}</p>
+        </div>
+        <div class="item-actions col-lg-6 col-md-12">
+          <div class="quantity-selector">
+            <form class="form_add" action="{% url 'cart_add' %}" method="POST">
+              {% csrf_token %}
+              <div class="qty">
+            <button type="button" class="quantity-btn decrement">-</button>
+            {% for key,value in quantities.items %}
+      {% if key == product.id|slugify  %}    
+        <input type="number" class="quantity-input" name="product_qty" value="{{ value }}">
+      {% endif %}
+    {% endfor %}
+            <button type="button" class="quantity-btn increment">+</button>
+            </div>
+            <button type="submit" class="btn-neon" id="add_cart">Update Quantity</button>
+            <input type="hidden"  value="{{ product.id }}" name="product_id">
+            </form>
+          </div>
+          <form class="form-remove" action="{% url 'cart_remove' %}" method="post" >
+            {% csrf_token %}
+            <input type="hidden" value="{{ product.id }}" name="product_id">
+          <button class="remove-btn">REMOVE</button>
+          </form>
+        </div>
+      </div>
+
+
+
+
+     <!-- <div class="cart-item">
+        <img src="https://via.placeholder.com/100x100/1A1A1A/00FFEE?text=NW" class="item-image" alt="Neon Wireless Earbuds">
+        <div class="item-details">
+          <h3 class="item-name">{{ product.name }}</h3>
+          <p class="item-price">{{ product.price }}</p>
+        </div>
+        <div class="item-actions">
+          <div class="quantity-selector">
+                 <form class="form_add" action="{% url 'cart_add' %}" method="POST">
+        {% csrf_token %}
+        
+      <div class="qty">
+    <button type="button"  class="quantity-btn decrement" >-</button>
+
+    
+    {% for key,value in quantities.items %}
+      {% if key == product.id|slugify  %}    
+        <input type="number" class="quantity-input" name="product_qty" value="{{ value }}" id="hidden_qty" min="1">
+      {% endif %}
+    {% endfor %}
+    <button type="button"  class="quantity-btn increment" type="submit">+</button>
+    </div>   
+         <button class="btn-neon" id="add_cart" style="width: 100%;">Update Quantity</button>
+      </form>
+          </div>
+          <form action="{% url 'cart_remove' %}" method="post" >
+            {% csrf_token %}
+            <input type="hidden" value="{{ product.id }}" name="product_id">
+          <button class="remove-btn">REMOVE</button>
+          </form>
+        </div>
+      </div>
+      {% empty %} -->
+{% endfor %}
+   <!-- <div id="total" >
+    <div style="padding: 10px;">
+      <span style="text-transform: capitalize; font-weight: bold; font-size: larger;">Sub-total :</span> 
+      <span style="float: right;font-weight: lighter; color: cyan;">{{ total }}</span>
+    </div>
+    <div style="padding: 10px; border-bottom: 2px solid cyan;">
+      <span style="text-transform: capitalize; font-weight: bold; font-size: larger; ">Shipping :</span>  
+      <span style="float: right;font-weight: lighter; color: cyan;"> Free </span>
+
+    </div>
+  <div class="total-wrapper" style="float: right; padding: 10px;">
+      <span style="text-transform: capitalize; font-weight: bold; font-size: larger;">total : </span> 
+      <span style="font-weight: lighter; color: cyan;">{{ total }}</span>
+    <br>
+    <a href="{% url 'storefront_checkout'%}" ><button class="btn-neon">Checkout</button></a> 
+  </div>
+  </div> -->
+
+
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal ({{ cart|length }} items):</span>
+        <span>${{ total }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping:</span>
+        <span>FREE</span>
+      </div>
+      <div class="summary-row">
+        <span>Tax:</span>
+        <span>$154.70</span>
+      </div>
+      <div class="summary-row total">
+        <span>TOTAL:</span>
+        <span>${{ total }}</span>
+      </div>
+     <a href="{% url 'storefront_checkout'%}" ><button class="checkout-btn">PROCEED TO CHECKOUT</button></a> 
+    </div>
+
+
+{% else %}
+      <div id="cart_msg" style="text-transform: capitalize; text-align: center; padding: 10px;"> your cart is empty </div>
+{% endif %}
+</div>
+  </div>
+  <div>
+    <h1 class="cart-title" style="text-align: center;">Recently Viewed</h1>
+     <div class="recently">
+  {% for r in recent %}
+  <div class="product-card" style="width: 20rem;">
+    <a class="product-link" href="{% url 'product_details' r.name %}" style="text-decoration: none; color: cyan;">
+      <div class="product-badge">{{ r.cat }}</div>
+        <div class="product-img">
+          <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Phone">
+        </div>
+        <h3>{{ r.name }}</h3>
+        {% if r.cat == "sale" %}
+        <p class="price">${{ r.sale_price }}<span class="original-price">${{ r.price }}</span></p>
+        {% else %}
+        <p class="price">${{ r.price }}</p>
+        {% endif %}
+    </a>
+      </div>
+    {% endfor %}
+      </div>
+  </div>
+</div>
+{% endblock body%}
+<!-- <script></script>
+<script>
+         $(function(){
+          console.log($("form"))
+    $("form").on("submit",function (e) {
+        e.preventDefault()
+        console.log($(this).attr("method"))
+        let parent = $(this).parent().parent()
+        console.log(parent)
+        $.ajax({data:$(this).serialize(),
+                type:$(this).attr("method"),
+                url:$(this).attr("action") ,
+                success:function(response){
+                if(response){
+                  parent.remove()
+                    console.log(response.msg)
+                    $("#notification-parent").append(`<div id="notification" style="background:cyan; font-weight: bold; color:white; text-align:center; padding: 5px; width:100%;">
+                      ${response.msg}</div>`)
+                      $("#notification").fadeToggle(2000)
+			setTimeout(()=>{
+				$("#notification").remove()
+			},2500)
+                    let cartitems =[...$(".cart-item")]
+                    console.log(cartitems.length)
+                    let cart_msg = $("#cart_msg")
+                    let el = $(".cart-summary")
+                    $("#total span").eq(1).text(response.total)
+                    console.log(el)
+                    console.log(response.total)
+                    let cart_body = $(".cart-container")
+                    let cart_items = $(".cart-items")
+                    if(cartitems.length == 0){
+                      console.log("empty")
+                      el.remove()
+                      cart_items.remove()
+                      cart_body.append(`<div id="cart_msg" style="text-transform: capitalize; text-align: center; padding: 10px;">
+                         your cart is empty </div>`)
+                    }
+                    
+                }
+            }
+        })
+    })
+   })
+</script> -->

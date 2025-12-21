@@ -1,0 +1,67 @@
+{% extends 'storefront\index.html' %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs %}
+<a href="{% url 'storefront_home' %}" class="nav-links">Home</a>
+<span style="font-weight: bold;"> | </span> 
+
+<span style="color: cyan;">Checkout</span>
+{% endblock breadcrumbs %}
+{% block body %}
+    <div class="checkout-header">
+      <h1 class="checkout-title">CHECKOUT</h1>
+    </div>
+    <div class="sub_checkoutb">
+ <div>
+                  <div class="checkout-summary">
+        <h3 class="checkout-title">Shopping Summary</h3>
+ {% for product in products %}
+    <div class="checkout-product">
+        <strong>{{ product.name }}</strong>
+         {% for key,value in quantities.items %}
+      {% if key == product.id|slugify  %}    
+        <small style="color: var(--pink);">{{ value }} X <span>${{product.price}}</span></small>
+      {% endif %}
+        {% endfor %}
+    </div> 
+{% endfor %}
+<div style="padding: 10px; color: cyan;"><strong >TOTAL</strong> : <span>${{ total }}</span></div>
+<a href="{% url 'cart_summary' %}"><button class="btn-neon">Update Item(s)</button></a> 
+</div>
+
+        </div>
+     
+      <form action="{% url 'storefront_checkout' %}" method="post">
+      <h1>Shipping Information</h1>
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-12"><h6>Recipient Information</h6></div>
+          <div class="col-6 form-group">
+            <label for="">Name</label>
+            {{ form.recipient_name }}
+          </div>
+          <div class="col-6 form-group">
+            <label for="">Phone</label>
+            {{ form.recipient_phone }}
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 form-group">
+            <label for="">Local Government Area</label>
+            {{ form.lg_area }}
+          </div>
+        </div>
+         <div class="row">
+          <div class="col-12 form-group">
+            <label for="">Address</label>
+            {{ form.recipient_address }}
+          </div>
+        </div>
+        <button class="btn-neon">Continue to Billing</button>
+    </form> 
+
+       
+    </div>
+
+
+{% endblock %}
