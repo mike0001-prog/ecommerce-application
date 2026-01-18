@@ -9,8 +9,11 @@ Django==5.1.7
 django-allauth==65.6.0
 django-crispy-forms==2.3
 django-otp==0.2.7
+gunicorn==23.0.0
 idna==3.11
+packaging==25.0
 pillow==11.1.0
+psycopg2==2.9.11
 pycparser==2.23
 PyJWT==2.10.1
 pyotp==2.9.0
@@ -19,3 +22,4 @@ requests==2.32.5
 sqlparse==0.5.3
 tzdata==2025.1
 urllib3==2.6.2
+whitenoise==6.11.0
