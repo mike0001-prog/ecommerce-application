@@ -1,5 +1,6 @@
 {% extends "account\custom_base_template.html" %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 {% block title %} Login {% endblock title%}
 {% block body %}
 <div style="background-color: var(--discover);" >
@@ -26,13 +27,17 @@
             {{ form|crispy }}
                 {% csrf_token %}
                 {{ redirect_field }}
-            <div style="display: flex; justify-content: center; background-color: var(--discover);">
-                 <button class="btn-neon" style="width: 100%;">
+            <div style="display: flex; gap: 3px; flex-direction: column; justify-content: center; background-color: var(--discover);">
+                 <button  type="submit" class="btn-neon" style="width: 100%;">
                     {% trans "Sign In" %}
             </button>
+            <a class="d-block w-100" href="{% provider_login_url 'google' %}"> 
+    <button  type="button" class="text-capitalize btn-neon w-100"> continue with google</button>
+</a>
             </div>
     </form>
     {% endif %}
+    {% comment %}
     {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
         {% element hr %}
         {% endelement %}
@@ -52,6 +57,7 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+    {% endcomment %}
 {% endblock content %}
 {% block extra_body %}
     {% if PASSKEY_LOGIN_ENABLED %}

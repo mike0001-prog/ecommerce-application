@@ -1,6 +1,8 @@
 from .models import Order,OrderItem,Product
 from .cart import CartManager
 def create_order(user,phone,addr,total,mode,request):
+            if not request.user.is_authenticated:
+                user = None
             cart = CartManager(request)
             products = cart.get_products()
             quantities = cart.get_quants()

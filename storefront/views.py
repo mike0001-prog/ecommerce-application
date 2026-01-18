@@ -156,10 +156,10 @@ def billing(request):
     order_info = request.session.get("order_info")
 
     if request.method == "POST":
-        print(request.POST)
-        print(request.POST["mode"].lower())
+        # print(request.POST)
+        # print(request.POST["mode"].lower())
         if request.POST["mode"].lower() == "epayment":
-            order = Order.objects.create(user=request.user,
+            order = Order.objects.create(user=request.user or None,
                                 phone=order_info["phone"],
                                 shipping_address=order_info["address"],
                                 amount_paid=total,
@@ -179,19 +179,13 @@ def billing(request):
             
             return redirect("payment_page")
         else:
-            if request.user.is_authenticated:
-                create_order(user=request.user,
-                            phone=order_info["phone"],
-                            adrr=order_info["address"],
-                            total=total,
-                            mode=request.POST["mode"])
-            else:
-                create_order(user=None,
-                            phone=order_info["phone"],
-                            addr=order_info["address"],
-                            total=total,
-                            mode=request.POST["mode"],
-                            request=request)
+            create_order(user=request.user,
+                        phone=order_info["phone"],
+                        addr=order_info["address"],
+                        total=total,
+                        mode=request.POST["mode"],
+                        request=request)
+           
             cart = CartManager(request)
             cart.checkout()
 

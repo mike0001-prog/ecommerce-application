@@ -1,0 +1,5 @@
+ENV
+jsconfig.json
+.prettierc
+db.sqlite3
+.ENV

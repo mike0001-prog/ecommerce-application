@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,13 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f#bh$55_ishrn(dhr6yne_2f4nz0sz6$#^f+u6!%am2*56_6b$'
+# SECRET_KEY = 'django-insecure-f#bh$55_ishrn(dhr6yne_2f4nz0sz6$#^f+u6!%am2*56_6b$'
+from dotenv import load_dotenv
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get("SECRET_KEY")
+ 
+DEBUG = os.environ.get("DEBUG")
+ 
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","127.0.0.1").split(",")
 # SOCIALACCOUNT_ENABLED = True
 # Application definition
 
@@ -78,6 +85,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,13 +138,27 @@ else:
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     "default": dj_database_url.config(
+                default="postgresql://store_db_ga6k_user:PtvQk4t9waBxz02KpjcR80722S75spYO@dpg-d5minmsmrvns73f6egjg-a.oregon-postgres.render.com/store_db_ga6k",
+                conn_max_age=600,
+                ssl_require=True)# use in prod
     }
-}
+print(os.getenv("DEBUG"))
+# if os.getenv("DEBUG"):
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',#use locally
+#         }
+#     }
+# else:
+#     DATABASES = {
+#      "default": dj_database_url.config(
+#                 default="postgresql://store_db_ga6k_user:PtvQk4t9waBxz02KpjcR80722S75spYO@dpg-d5minmsmrvns73f6egjg-a.oregon-postgres.render.com/store_db_ga6k",
+#                 conn_max_age=600,
+#                 ssl_require=True)# use in prod
+#     }
 
 
 # Password validation
@@ -172,7 +194,7 @@ LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "storefront_home"
 LOGOUT_REDIRECT_URL = "storefront_home"
 
-PAYSTACK_PUBLIC_KEY = "pk_test_a30f4ef9ded4d934bded1c45e60d9074e3ceb2f9"
+PAYSTACK_PUBLIC_KEY = os.getenv("PAYSTACK_PUBLIC_KEY")
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -188,4 +210,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SOCIALACCOUNT_LOGIN_ON_GET = True
