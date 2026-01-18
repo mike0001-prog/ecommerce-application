@@ -138,27 +138,27 @@ else:
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-     "default": dj_database_url.config(
-                default="postgresql://store_db_ga6k_user:PtvQk4t9waBxz02KpjcR80722S75spYO@dpg-d5minmsmrvns73f6egjg-a.oregon-postgres.render.com/store_db_ga6k",
-                conn_max_age=600,
-                ssl_require=True)# use in prod
-    }
-print(os.getenv("DEBUG"))
-# if os.getenv("DEBUG"):
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',#use locally
-#         }
-#     }
-# else:
-#     DATABASES = {
+# DATABASES = {
 #      "default": dj_database_url.config(
 #                 default="postgresql://store_db_ga6k_user:PtvQk4t9waBxz02KpjcR80722S75spYO@dpg-d5minmsmrvns73f6egjg-a.oregon-postgres.render.com/store_db_ga6k",
 #                 conn_max_age=600,
 #                 ssl_require=True)# use in prod
 #     }
+# print(os.getenv("DEBUG"))
+if os.getenv("DEBUG"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',#use locally
+        }
+    }
+else:
+    DATABASES = {
+     "default": dj_database_url.config(
+                default=os.getenv("DATABASE_URL"),
+                conn_max_age=600,
+                ssl_require=True)# use in prod
+    }
 
 
 # Password validation
