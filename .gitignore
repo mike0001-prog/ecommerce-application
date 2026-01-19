@@ -3,3 +3,5 @@ jsconfig.json
 .prettierc
 db.sqlite3
 .ENV
+Dockerfile
+docker-compose.yml
