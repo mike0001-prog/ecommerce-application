@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from authentication import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("users/",include("authentication.urls")),
     path("store/",include("storefront.urls")),
-    path("accounts/",include("allauth.urls"))
+    path("accounts/",include("allauth.urls")),
+    path("", views.CustomSignupView.as_view())
 ]
 if settings.DEBUG is True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
