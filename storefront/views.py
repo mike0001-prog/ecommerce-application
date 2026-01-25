@@ -156,7 +156,7 @@ def billing(request):
     order_info = request.session.get("order_info")
 
     if request.method == "POST":
-        # print(request.POST)
+        print(request.POST)
         # print(request.POST["mode"].lower())
         if request.POST["mode"].lower() == "epayment":
             order = Order.objects.create(user=request.user or None,

@@ -8,7 +8,7 @@
     {% for msg in messages %}
 <div >{{ msg }}</div>
 {%  endfor %}
-<form action="" method="post" >
+<form action="." method="post" >
 {% csrf_token %}
 {{ form|crispy }}
     <div style="display: flex; justify-content: center; background-color: var(--discover);">

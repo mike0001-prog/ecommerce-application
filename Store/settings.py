@@ -179,6 +179,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_FORMS = {"signup":"authentication.forms.CustomSignupForm"}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

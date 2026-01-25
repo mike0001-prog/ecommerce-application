@@ -19,7 +19,7 @@
             </a>
         {% endsetvar %}
         {% element p %}
-         If you have not created an account yet, then please <a href="{% url 'user_signup' %}"> signup </a>
+         If you have not created an account yet, then please <a href="{{ signup_url }}"> signup </a>
           first.
         {% endelement %}
         {% url 'account_login' as login_url %}

@@ -28,11 +28,27 @@
         <h1>Select Payment Method</h1>
         <form action="{% url 'storefront_billing' %}" method="post">
             {% csrf_token %}
-            <select style="padding: 10px; color: white; background:transparent; border: 2px solid cyan; outline: none;" name="mode" >
+            <!-- <select style="padding: 10px; color: white; background:transparent; border: 2px solid cyan; outline: none;" name="mode" >
                 <option style="padding: 10px; color: white; background:black;" value="COD">Cash on Delivery</option>
                 <option  style="padding: 10px; color: white; background:black;" value="epayment">E-payment</option>
-            </select>
-
+            </select> -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="mode" id="epayment"  value="epayment" checked/>
+                <label class="form-check-label" for="epayment"> E-payment </label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="mode"
+                    id="COD"
+                    value="COD"
+                />
+                <label class="form-check-label" for="COD">
+                   Cash on Delivery
+                </label>
+            </div>
+            
       
             <button class="btn-neon">Continue with Payment</button>
         </form>

@@ -16,7 +16,7 @@
     <div class="logo">TECHNOVA</div>
     <div>
       
-      <button class="btn-neon">Sign Up</button>
+        <a href="{%  url 'account_signup' %}">Sign Up</a> <span style="font-size: larger;" >/</span><a href="{% url 'account_login' %}">Sign In</a>
     </div>
   </nav>
 
@@ -29,7 +29,10 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2023 TECHNOVA | <span class="neon-pink">Powered by Innovation</span></p>
+    <p>© 2023 TECHNOVA | <span class="neon-pink">Powered by Innovation</span>
+    <div class="text-capitalize">built by oyeniyi kehinde michael</div>
+    
+    </p>
   </footer>
   <script src="{% static 'user\index.js' %}"></script>
 </body>
