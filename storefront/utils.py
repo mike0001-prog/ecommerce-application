@@ -1,8 +1,10 @@
 from .models import Order,OrderItem,Product
 from .cart import CartManager
 def create_order(user,phone,addr,total,mode,request):
+            # user = request.user
             if not request.user.is_authenticated:
                 user = None
+            
             cart = CartManager(request)
             products = cart.get_products()
             quantities = cart.get_quants()
@@ -26,3 +28,22 @@ def create_order(user,phone,addr,total,mode,request):
                                                 user=user,
                                                 quantity = value,
                                                 price=product.price)
+
+
+#  order = Order.objects.create(user= None,
+#                                 phone=order_info["phone"],
+#                                 shipping_address=order_info["address"],
+#                                 amount_paid=total,
+#                                 mode=request.POST["mode"])
+        
+#             order_id = order.pk
+#             for product in products:
+#                 for key,value in quantities.items():
+#                     id = int(key)
+#                     if id == product.id:
+#                         p = Product.objects.get(id = product.id)
+#                         OrderItem.objects.create(order=order,
+#                                                 product=p,
+#                                                 user=request.user,
+#                                                 quantity = value,
+#                                                 price=product.price) 

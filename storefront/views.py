@@ -13,6 +13,7 @@ from allauth.account.views import LogoutView
 from  django.conf import settings
 import requests
 from .utils import create_order
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -159,23 +160,24 @@ def billing(request):
         print(request.POST)
         # print(request.POST["mode"].lower())
         if request.POST["mode"].lower() == "epayment":
-            order = Order.objects.create(user=request.user or None,
-                                phone=order_info["phone"],
-                                shipping_address=order_info["address"],
-                                amount_paid=total,
-                                mode=request.POST["mode"])
+            pass
+            # order = Order.objects.create(user= None,
+            #                     phone=order_info["phone"],
+            #                     shipping_address=order_info["address"],
+            #                     amount_paid=total,
+            #                     mode=request.POST["mode"])
         
-            order_id = order.pk
-            for product in products:
-                for key,value in quantities.items():
-                    id = int(key)
-                    if id == product.id:
-                        p = Product.objects.get(id = product.id)
-                        OrderItem.objects.create(order=order,
-                                                product=p,
-                                                user=request.user,
-                                                quantity = value,
-                                                price=product.price)
+            # order_id = order.pk
+            # for product in products:
+            #     for key,value in quantities.items():
+            #         id = int(key)
+            #         if id == product.id:
+            #             p = Product.objects.get(id = product.id)
+            #             OrderItem.objects.create(order=order,
+            #                                     product=p,
+            #                                     user=request.user,
+            #                                     quantity = value,
+            #                                     price=product.price) 
             
             return redirect("payment_page")
         else:
@@ -189,7 +191,7 @@ def billing(request):
             cart = CartManager(request)
             cart.checkout()
 
-            return redirect('success_page')
+            return redirect('success_page',mode="epayment")
 
     context = {"products":products,"quantities":quantities,"total":total,"title":"Billing"}
     return render(request,"storefront/billing.html",context)
@@ -268,28 +270,58 @@ def search(request):
         return JsonResponse({"msg":"bad request"})
 
 def payment_page(request):
-    return render(request,"storefront/payment_page.html")
+    cart = CartManager(request)
+    total = cart.calculate_total() * 100 # convert  to kobo
     
-def sucess_page(request):
-    return render(request,"storefront/success_page.html")
+    # host = f"https://{settings.ALLOWED_HOSTS[0]}"
+    amount = total
+  
+    context = {"amount":amount,"mode": "epayment"}
+    return render(request,"storefront/payment_page.html",context)
+    
+def sucess_page(request,mode):
+    if mode == "epayment":
+        cart = CartManager(request)
+        total = cart.calculate_total()
+      
+        order_info = request.session.get("order_info")
+        create_order(user=request.user,
+                        phone=order_info["phone"],
+                        addr=order_info["address"],
+                        total=total,
+                        mode=mode,
+                        request=request)
 
+    return render(request,"storefront/success_page.html")
+import json
+@csrf_exempt
 def verify_payment(request):
-    reference = request.GET.get("reference")
+    # reference = request.POST.get("reference")
+    # print(request.body)
+    # print(type(request.body))
+    # json.load(request.body)
+    cart = CartManager(request)
+    request_dict = json.loads(request.body)
+    # print()
+    reference = request_dict["reference"]
+    # print(reference)
 
     url = f"https://api.paystack.co/transaction/verify/{reference}"
 
     headers = {
         "Authorization": f"Bearer {settings.PAYSTACK_PUBLIC_KEY}",
     }
-
+    print(settings.PAYSTACK_PUBLIC_KEY)
     response = requests.get(url, headers=headers)
     data = response.json()
-
+    print(data)
     if data["status"] and data["data"]["status"] == "success":
+        cart.checkout()
         return JsonResponse({
             "message": "Payment successful!",
             "amount": data["data"]["amount"],
-            "reference": reference
+            "reference": reference,
+            "success": True
         })
 
     return JsonResponse({"message": "Payment verification failed"})

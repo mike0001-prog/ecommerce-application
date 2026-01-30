@@ -184,12 +184,14 @@
       text-transform: uppercase;
     }
     .product-image{
-      height: 200px;
+
       width: 200px;
     }
-    .product-image image{
+    .product-image img{
       height: auto;
       width: 100%;
+      padding: 4px;
+
     }
     .price {
       font-size: 20px;

@@ -1,4 +1,5 @@
 {% extends 'storefront/index.html' %}
+{% load static %}
 {% block breadcrumbs %}
 <a href="{% url 'storefront_home' %}" class="nav-links">Home</a><span style="font-weight: bold;"> | </span> 
 <a href="{% url 'product_cat' product.cat.name %}" class="nav-links" >{{ product.cat.name }}</a><span style="font-weight: bold;"> | </span>
@@ -12,8 +13,13 @@
 
   <div class="product_card row" style="gap: 0;">
     <div class="img col-lg-3 col-md-6 col-sm-12 mb-3">
-      <img class="product_image" src="{{ product.image.url }}" alt="product image">
+      <img class="p-2 product_image" src="{% static '/storefront/default.png' %}" alt="Phone">
+      <!-- {% if product.image.url %}
 
+      <img class="product_image" src="{{ product.image.url }}" alt="product image">
+      {% else %}
+      <img class="p-2 product_image" src="{% static '/storefront/default.png' %}" alt="Phone">
+      {% endif %} -->
       <div class="price">${{ product.price }}</div>
     <div>
         <div class="row" style="align-items: center;">
@@ -102,6 +108,7 @@
       <h2 style="border-bottom: 2px solid cyan; padding: 10px;">
         Product Details
       </h2>
+      {{ product.description }}
     </div>
   </div>
   </div>

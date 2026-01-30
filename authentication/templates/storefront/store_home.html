@@ -1,5 +1,6 @@
 {% extends 'storefront/index.html' %}
 {% block body %}
+{% load static %}
     <!-- {% for product in products %}
         <div class="product-card" style="padding: 5px;">
             <img src="{{product.image.url}}" alt="" class="product-image" style="width: 60px;">
@@ -72,8 +73,8 @@
       <div class="product-card">
     <a class="product-link" href="{% url 'product_details' product.name %}">
                <div class="product-badge">{{ product.cat }}</div>
-        <div class="product-img">
-          <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Phone">
+        <div class="product-image">
+          <img class="p-2" src="{% static '/storefront/default.png' %}" alt="Phone">
         </div>
         <h3 style="font-size: 1rem;">{{ product.name }}</h3>
         {% if product.cat == "sale" %}
