@@ -275,8 +275,9 @@ def payment_page(request):
     
     # host = f"https://{settings.ALLOWED_HOSTS[0]}"
     amount = total
-  
-    context = {"amount":amount,"mode": "epayment"}
+    key = settings.PAYSTACK_PUBLIC_KEY
+    print(key)
+    context = {"amount":amount,"mode": "epayment","key":key}
     return render(request,"storefront/payment_page.html",context)
     
 def sucess_page(request,mode):
@@ -309,9 +310,9 @@ def verify_payment(request):
     url = f"https://api.paystack.co/transaction/verify/{reference}"
 
     headers = {
-        "Authorization": f"Bearer {settings.PAYSTACK_PUBLIC_KEY}",
+        "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
     }
-    print(settings.PAYSTACK_PUBLIC_KEY)
+    print(settings.PAYSTACK_SECRET_KEY)
     response = requests.get(url, headers=headers)
     data = response.json()
     print(data)

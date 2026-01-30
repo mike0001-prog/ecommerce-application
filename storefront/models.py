@@ -72,3 +72,16 @@ class WishListItem(models.Model):
 
     def __str__(self):
         return f"#{self.wishlist} wishlist item"
+    
+# class Payment(models.Model):
+#     user = models.ForeignKey(User,on_delete=models.CASCADE)
+#     order = models.
+#     class Meta:
+#         verbose_name = _("Payment")
+#         verbose_name_plural = _("Payments")
+
+#     def __str__(self):
+#         return self.name
+
+#     def get_absolute_url(self):
+#         return reverse("Payment_detail", kwargs={"pk": self.pk})

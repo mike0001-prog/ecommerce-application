@@ -30,7 +30,7 @@ Pay Now with paystack
     function makePayment() {
         
          let handler = PaystackPop.setup({
-        key: "pk_test_a30f4ef9ded4d934bded1c45e60d9074e3ceb2f9",
+        key: "{{ key }}",
         email: "olamidesunday645@gmail.com",  // can be a test email
         amount: parseInt("{{ amount }}") ,         // amount in kobo
         currency: "NGN",
