@@ -125,14 +125,16 @@
         </div> -->
           <div class="product-card">
         <div class="product-badge">{{ product.cat }}</div>
-        <img src="https://via.placeholder.com/200x200/1A1A1A/00FFEE?text=PRODUCT" alt="Phone">
+          <div class="product-image">
+          <img class="p-2" src="{% static '/storefront/default.png' %}" alt="Phone">
+        </div>
         <h3>{{ product.name }}</h3>
         {% if product.cat == "sale" %}
         <p class="price">{{ product.sale_price }}<span class="original-price">{{ product.price }}</span></p>
         {% else %}
         <p class="price">{{ product.price }}</p>
         {% endif %}
-          <a href="{% url 'product_details' product.name %}">
+          <a class="text-decoration-none" href="{% url 'product_details' product.name %}">
        <button class="btn-neon">VIEW PRODUCT</button>
       </a>
       </div>
