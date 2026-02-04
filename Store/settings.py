@@ -57,32 +57,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': ['profile', 'email'],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         },
-#     }
-# }
 
-#      "APPS": [
-#             {
-#                 "client_id": "123",
-#                 "secret": "456",
-#                 "key": "",
-#                 "settings": {
-#                     # You can fine tune these settings per app:
-#                     "scope": [
-#                         "profile",
-#                         "email",
-#                     ],
-#                     "auth_params": {
-#                         "access_type": "online",
-#                     },
-#                 },
-#             },
-#         ],
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -150,29 +125,7 @@ EMAIL_USE_TLS=True
 #     }
 # print(os.getenv("DEBUG"))
 
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        "APPS": [
-            {
-                "client_id": "787654199634-69pcf9dqbr4qv0c88k42ut9n7mi6qssp.apps.googleusercontent.com",
-                "secret": "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",
-                "key": ""
-            },
-        ],
-        # These are provider-specific settings that can only be
-        # listed here:
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        },
-    }
-}
+
 
 DATABASES = {
      "default": dj_database_url.config(
