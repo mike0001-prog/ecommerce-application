@@ -271,7 +271,7 @@ def search(request):
 
 def payment_page(request):
     cart = CartManager(request)
-    total = cart.calculate_total() * 100 # convert  to kobo
+    total = (cart.calculate_total() * 100) * 1400 # convert  to kobo
     
     # host = f"https://{settings.ALLOWED_HOSTS[0]}"
     amount = total

@@ -130,9 +130,9 @@
         </div>
         <h3>{{ product.name }}</h3>
         {% if product.cat == "sale" %}
-        <p class="price">{{ product.sale_price }}<span class="original-price">{{ product.price }}</span></p>
+        <p class="price">${{ product.sale_price }}<span class="original-price">{{ product.price }}</span></p>
         {% else %}
-        <p class="price">{{ product.price }}</p>
+        <p class="price">${{ product.price }}</p>
         {% endif %}
           <a class="text-decoration-none" href="{% url 'product_details' product.name %}">
        <button class="btn-neon">VIEW PRODUCT</button>
