@@ -128,14 +128,21 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # print(os.getenv("DEBUG"))
 
 
+#data base expired
+# DATABASES = {
+#      "default": dj_database_url.config(
+#                 default=os.getenv("DATABASE_URL"),
+#                 conn_max_age=600,
+#                 ssl_require=True)# use in prod
+#     }
 
 DATABASES = {
-     "default": dj_database_url.config(
-                default=os.getenv("DATABASE_URL"),
-                conn_max_age=600,
-                ssl_require=True)# use in prod
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

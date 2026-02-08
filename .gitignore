@@ -1,7 +1,6 @@
 ENV
 jsconfig.json
 .prettierc
-*.sqlite3
 .ENV
 Dockerfile
 docker-compose.yml
