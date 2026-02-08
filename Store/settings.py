@@ -17,8 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(f"LOADED ENV {os.getenv("DEBUG")}")
-print(f"LOADED ENV {os.getenv("EMAIL_HOST_PASSWORD")}")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -28,7 +27,8 @@ print(f"LOADED ENV {os.getenv("EMAIL_HOST_PASSWORD")}")
 from dotenv import load_dotenv
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-
+print(f"LOADED ENV {os.getenv("DEBUG")}")
+print(f"LOADED ENV {os.getenv("EMAIL_HOST_PASSWORD")}")
 # ALLOWED_HOSTS = []
 SECRET_KEY = os.environ.get("SECRET_KEY")
  
@@ -106,13 +106,15 @@ WSGI_APPLICATION = 'Store.wsgi.application'
 
 # else:
 #     EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER='kehindeoyeniyi08@gmail.com'
-EMAIL_HOST_PASSWORD= os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS=True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER='kehindeoyeniyi08@gmail.com'
+# EMAIL_HOST_PASSWORD= os.getenv("EMAIL_HOST_PASSWORD")
+# EMAIL_USE_TLS=True
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
