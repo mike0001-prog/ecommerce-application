@@ -19,7 +19,7 @@
        
   <div class="message d-flex justify-content-center align-items-center d-none" style="
     position: fixed; 
-    background: var(--cs-gray);
+    background: var(--white);
     top: 3%;
     left: 50%;
     z-index: 10000;
@@ -55,9 +55,12 @@
                 {% csrf_token %}
                 <input id="action" type="hidden" name="action" value="submit">
                 <input name="search" type="search" placeholder="search a product" >
-                 <button>
-                    <img  src="{% static 'storefront\search.svg' %}" alt="search">
-                 </button>       
+              
+        <button type="submit" >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--green)" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+</svg>
+        </button>      
             </form>
       <div class="search-result">
 
@@ -238,7 +241,6 @@
             }
         })
     })
-
 
         // listen for submit event on any form with class form_add
     $(".form_add").on("submit",function (e) {

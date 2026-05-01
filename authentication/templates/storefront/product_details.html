@@ -6,7 +6,7 @@
 
 <a href="{% url 'product_details' product.name %}" class="nav-links" >{{ product.name }}</a><span style="font-weight: bold;"> | </span>
 
-<span style="color: cyan;">Details</span>
+<span style="color: var(--green);">Details</span>
 {% endblock breadcrumbs %}
 {% block body %}
 <div class="product_d">
@@ -105,7 +105,7 @@
     </div>
   <div class="info col-lg-9 col-md-6 col-sm-12 ">
     <div class="wrapper-info">
-      <h2 style="border-bottom: 2px solid cyan; padding: 10px;">
+      <h2 style="border-bottom: 2px solid var(--green); padding: 10px;">
         Product Details
       </h2>
       {{ product.description }}
@@ -113,7 +113,7 @@
   </div>
   </div>
   <div class="sub">
-    <h3 style="text-transform: uppercase; text-align: center; border-bottom:2px solid cyan ;">you may also like</h3>
+    <h3 style="text-transform: uppercase; text-align: center;">you may also like</h3>
     <div class="sug">
         {% for product in products %}
         <!-- <div class="product-card" style="padding: 5px;">

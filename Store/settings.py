@@ -80,7 +80,7 @@ AUTHENTICATION_BACKENDS = [ 'django.contrib.auth.backends.ModelBackend',
 # Custom allauth settings
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*','last name*','firstname*']
 ACCOUNT_LOGIN_METHODS = {'email'}
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 
 
@@ -143,6 +143,7 @@ DATABASES = {
     }
 
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
